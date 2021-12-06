@@ -22,13 +22,9 @@ function lastElm(arr) {
     // let x= arr.find(item=>item[item.length-1])
     // console.log(x);
     let y= arr.length;
-    console.log(y);
-    console.log(arr[y-1]);
-for (let index = 0; index< arr.length; index++) {
-    const element = arr[index];
-    console.log(element);
-}
-
+    return arr[y-1];
+    // console.log(y);
+    // console.log(arr[y-1]);
 
   }
 
