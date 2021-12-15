@@ -155,11 +155,16 @@ For example, [1, 14, 0.2, -281, 54782] is only correctly sorted in that order.
 const sortNumbersByLength = (arr) => {
   // Solution code here...
 
-  // ================= not solved========================
-  arr.sort((a,b) => a.length > b.length ? -1 : 1)
-  return arr;
-};
-
+  //
+  arr.sort((a,b) => {
+    if(a.toString().length !== b.toString().length) {
+      return a.toString().length - b.toString().length;
+    }
+    
+  }
+  )
+return arr
+}
 /*-----------------------------------------------------------------------------------------------
 CHALLENGE 10 - Stretch Goal
 
@@ -180,6 +185,16 @@ const people = [
 
 const sortPeople = (arr) => {
   // Solution code here...
+  arr.sort((a, b)=>  {
+    if ( a.lastName < b.lastName ){
+      return -1;
+    }
+    if ( a.lastName > b.lastName ){
+      return 1;
+    }
+    return 0;
+  })
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -194,6 +209,32 @@ If two people have the same full name, the younger one should come first. Do not
 
 const sortPeopleBetter = (arr) => {
   // Solution code here...
+  arr.sort((a, b)=>  {
+    if ( a.lastName < b.lastName ){
+      return -1;
+    }else
+    if ( a.lastName > b.lastName ){
+      return 1;
+    }else
+    if (a.lastName == b.lastName){
+      if ( a.firstName < b.firstName ){
+        return -1;
+      }else
+      if ( a.firstName > b.firstName ){
+        return 1;
+
+    }else 
+    if(a.firstName == b.firstName){
+     if(a.age > b.age)  return 1 ;
+      if(b.age > a.age) return -1;
+      return 0;;
+    }
+  }
+
+    return 0;
+  })
+  return arr;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -220,6 +261,11 @@ const meetings = [
 
 const sortMeetingsByDay = (arr) => {
   // Solution code here...
+  arr.sort((a,b)=>{
+    if(a.dayOfWeeknew.Date().getDay() > a.dayOfWeeknew.Date().getDay()) return 1;
+    if(b.dayOfWeeknew.Date().getDay() > b.dayOfWeeknew.Date().getDay()) return -1;
+    return 0;
+  })
 };
 
 /* ------------------------------------------------------------------------------------------------
