@@ -8,6 +8,12 @@ Write a function called addTwo that takes in an array and adds two to every valu
 
 const addTwo = (arr) => {
   // Solution code here...
+  let newArr=[];
+  arr.forEach(element => {
+    newArr.push(element +2)
+    
+  });
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -19,6 +25,27 @@ Write a function named containsW that takes in a string. This function should us
 
 const containsW = (str) => {
   // Solution code here...
+  // str.split()
+  // str.forEach((ele)=>{ 
+  //   if (ele == "w") {
+  //     return true;
+  //     continue;
+  //   }
+
+  // } )
+  let re = /w/;
+  let re1 = /W/;
+  let x=str.match(re)
+  let y=str.match(re1)
+  console.log(x);
+  if (x== null) {
+    return false;
+    
+  }else if (y==null) {
+    return true;
+  }
+
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -35,7 +62,22 @@ For example:
 
 const isNum = (input) => {
   // Solution code here...
+  // regex = new Regex("^[0-9]*$");
+  // let x =input.match(regex);
+  // console.log(x);
+  // if (x== null) {
+  //   return true ;
+    
+  // }else {
+  //   return false;
+  // }
+
+  const regex = /\d/;
+let x = regex.test(input)
+  return x;
+
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -46,6 +88,10 @@ Write a function named containsWorld that takes in a string or number of any len
 
 const containsWorld = (input) => {
   // Solution code here...
+  const regex = /\bworld\b/;
+let x = regex.test(input)
+  return x;
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -58,6 +104,19 @@ Return an array containing all the matches.
 
 const isCapitalized = (str) => {
   // Solution code here...
+  let newArr = [];
+  let regex = /^[A-Z]/;
+
+  let regex2 = /[\s.),]+/;
+
+  const splitedArr = str.split(regex2);
+
+  splitedArr.forEach((string) => {
+    if (regex.test(string)){
+      
+      newArr.push(string);} 
+  });
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -67,6 +126,12 @@ Write a function named citiesAtoJ that takes in an array of city names and uses 
 ------------------------------------------------------------------------------------------------ */
 const citiesAtoJ = (arr) => {
   // Solution code here...
+  let newArr = []
+  arr.forEach(ele=>{
+    let check = ele.match(/^[A-Ja-j].*/g)
+    if(check){newArr.push(...check)}  
+  })
+  return newArr
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -83,6 +148,14 @@ Do not use the vertical bar (pipe) in your pattern.
 
 const matchMonth = (input) => {
   // Solution code here...
+  const regex1 = /\bOct\b/;
+  const regex2 = /\boct\b/;
+  
+  const regex3 = /\bOctober\b/;
+  const regex4 = /\boctober\b/;
+
+  return ( regex1.test(input) || regex2.test(input) || regex3.test(input) || regex4.test(input)
+);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -97,6 +170,8 @@ The expected output of "Hello, and have a wonderful day!" is ["and ", "have ", "
 
 const noPunctuation = (str) => {
   // Solution code here...
+  let regex = /[A-Za-z0-9]+\s/g;
+  return str.match(regex);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -113,6 +188,8 @@ For example, 'Welcome to Code 301!' will return 'W_lc_m_ t_ C_d_ 301!'.
 
 let hangman = (str) => {
   // Solution code here...
+  let regex = /a|A|e|E|i|I|o|O|u|U/g;
+  return str.replace(regex,"_");
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -130,6 +207,10 @@ const seashells =
 
 const findShells = (str) => {
   // Solution code here...
+  // /\w*ells\b/g
+
+  let regex = /\w*ells\b/g;
+  return str.match(regex);
 };
 
 /* ------------------------------------------------------------------------------------------------

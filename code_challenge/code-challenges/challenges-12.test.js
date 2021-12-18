@@ -10,6 +10,10 @@ E.g. [4,2,7,5,9,2] -> 9
 ------------------------------------------------------------------------------------------------ */
 const maxInArray = (arr) => {
   // Solution code here...
+  return arr.reduce((acc, item) => {
+    if (item > acc) acc = item;
+    return acc;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -28,6 +32,7 @@ return: 23
 ------------------------------------------------------------------------------------------------ */
 const findMax = (matrix) => {
   // Solution code here...
+  return Math.max(...matrix.map((item) => Math.max(...item)));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -46,6 +51,11 @@ return: 35
 ------------------------------------------------------------------------------------------------ */
 const totalSum = (matrix) => {
   // Solution code here...
+  let total = 0;
+  matrix.map((item) => {
+    let sum = item.map((element) => (total += element));
+  });
+  return total;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -85,6 +95,13 @@ const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
   // Solution code here...
+  let newArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  stores.map((item) => {
+    item.map((element, index) => {
+      newArr[index] += element;
+    });
+  });
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -99,6 +116,11 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 
 const salesData = (hours, data) => {
   // Solution code here...
+  let newArr = [];
+  data.map((item, i) => {
+    newArr[i] = { sales: data[i] + " cookies", time: hours[i] };
+  });
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -136,6 +158,7 @@ const errands = [
 
 const howManyTreats = (arr) => {
   // Solution code here...
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -170,6 +193,10 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 
 const calculateProduct = (numbers) => {
   // Solution code here...
+  return numbers.reduce((acc, item) => {
+    item.forEach((e) => (acc *= e));
+    return acc;
+  }, 1);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -211,6 +238,9 @@ let lowestWeeklyTemperatureData = [
 
 const lowestWeeklyAverage = (weather) => {
   // Solution code here...
+  let newArr = [0, 0, 0, 0];
+  weather.map((item, i) => item.forEach((element) => (newArr[i] += element)));
+  return Math.min(...newArr) / 7;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -227,6 +257,7 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 
 const excel = (str) => {
   // Solution code here...
+  
 };
 
 /* ------------------------------------------------------------------------------------------------

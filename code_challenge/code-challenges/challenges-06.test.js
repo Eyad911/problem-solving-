@@ -56,6 +56,25 @@ let characters = [
 
 const sortByChildren = (charArray) => {
 	// Solution code here...
+	return charArray.sort((a, b) => {
+		let x = a.children.length;
+		let y = b.children.length;
+		if (x < y) {
+		  return -1;
+		}
+		if (x > y) {
+		  return 1;
+		}
+		if (x == y) {
+		  if (a.house > b.house) {
+			return 1;
+		  }
+		  if (a.house < b.house) {
+			return -1;
+		  }
+		}
+		return 0;
+	  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -81,6 +100,7 @@ const courseInfo = {
 
 const getCourseKeys = (obj) => {
 	// Solution code here...
+	return Object.keys(courseInfo);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -93,6 +113,10 @@ Write a function named checkValues that takes in an object and a value and retur
 
 const checkValues = (obj, value) => {
 	// Solution code here...
+
+	let x = Object.keys(obj).find((key) => obj[key] === value);
+  if (x) return true;
+  else return false;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -116,6 +140,12 @@ HR has asked you to change the data to make it easier to print so that it looks 
 
 const updateNumbers = (obj) => {
 	// Solution code here...
+	let newArr = [];
+  for (let i = 0; i < Object.keys(obj).length; i++) {
+    let item = Object.keys(obj)[i] + ": " + Object.values(obj)[i];
+    newArr.push(item);
+  }
+  return newArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -127,6 +157,11 @@ Write a function named getHouses that returns a new array containing the names o
 const getHouses = (arr) => {
 	let houses = [];
 	// Solution code here...
+  arr.forEach((ele) => {
+    houses.push(ele.house);
+  });
+
+  return houses;
 };
 
 /*------------------------------------------------------------------------------------------------
@@ -143,6 +178,11 @@ hasChildrenValues(characters, 'Sansa') will return false
 
 const hasChildrenValues = (arr, character) => {
 	// Solution code here...
+	let child = false;
+	for (let i = 0; i < arr.length; i++) {
+	  if (arr[i].name === character && arr[i].children.length) child = true;
+	}
+	return child;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -155,6 +195,11 @@ The input and output of this function are the same as the input and output from 
 
 const hasChildrenEntries = (arr, character) => {
 	// Solution code here...
+	let child = false;
+	for (let i = 0; i < arr.length; i++) {
+	  if (arr[i].name === character && arr[i].children.length) child = true;
+	}
+	return child;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -165,6 +210,15 @@ Write a function named totalCharacters that takes in an array and returns the nu
 
 const totalCharacters = (arr) => {
 	// Solution code here...
+	let total = 0;
+
+  arr.forEach((element) => {
+    if (element.name) total += 1;
+    if (element.spouse) total += 1;
+    if (element.children) total += element.children.length;
+  });
+
+  return total;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -180,6 +234,15 @@ For example: [{ house: 'Stark', members: 7 }, { house: 'Arryn', members: 3 }, ..
 const houseSize = (arr) => {
 	const sizes = [];
 	// Solution code here...
+	arr.forEach((element) => {
+		let members = 0;
+		if (element.name) members += 1;
+		if (element.spouse) members += 1;
+		if (element.children) members += element.children.length;
+		sizes.push({ house: element.house, members });
+	  });
+	
+	  return sizes;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -203,6 +266,13 @@ const deceasedSpouses = ['Catelyn', 'Lysa', 'Robert', 'Khal Drogo', 'Alerie'];
 const houseSurvivors = (arr) => {
 	const survivors = [];
 	// Solution code here...
+	let wife =0
+  for (let i = 0; i < arr.length; i++) {
+    if(arr[i].spouse&&!deceasedSpouses.includes(arr[i].spouse)) wife =1
+    survivors.push({house:arr[i].house, members: arr[i].children.length+wife+1})
+    wife=0
+  }
+  return survivors;
 };
 
 /* ------------------------------------------------------------------------------------------------

@@ -10,3 +10,5 @@ const fizzBuzz = (n) => {
     } else console.log(index);
   }
 };
+
+

@@ -261,11 +261,23 @@ const meetings = [
 
 const sortMeetingsByDay = (arr) => {
   // Solution code here...
-  arr.sort((a,b)=>{
-    if(a.dayOfWeeknew.Date().getDay() > a.dayOfWeeknew.Date().getDay()) return 1;
-    if(b.dayOfWeeknew.Date().getDay() > b.dayOfWeeknew.Date().getDay()) return -1;
-    return 0;
-  })
+  // arr.sort((a,b)=>{
+  //   if(a.dayOfWeeknew.Date().getDay() > a.dayOfWeeknew.Date().getDay()) return 1;
+  //   if(b.dayOfWeeknew.Date().getDay() > b.dayOfWeeknew.Date().getDay()) return -1;
+  //   return 0;
+  // })
+
+  const arrangD = {
+    "Monday": 1,
+    "Tuesday": 2,
+    "Wednesday": 3,
+    "Thursday": 4,
+    "Friday": 5,
+  }
+  arr = arr.sort((a, b)=> {
+    return arrangD[a.dayOfWeek] - arrangD[b.dayOfWeek];
+  });
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -280,7 +292,34 @@ You DO NOT need to use your solution to Challenge 9 in completing Challenge 10.
 
 const sortSchedule = (arr) => {
   // Solution code here...
+  const arrangeD = {
+    "Monday": 1,
+    "Tuesday": 2,
+    "Wednesday": 3,
+    "Thursday": 4,
+    "Friday": 5,
+  }
+  arr = arr.sort((a, b) => {
+    let x = arrangeD[a.dayOfWeek],
+      y = arrangeD[b.dayOfWeek];
+    if (x < y) {
+      return 1;
+    }
+    if (x > y) {
+      return -1;
+    }
+    if (x == y) {
+      if (a.start == b.start) {
+        if(a.end-a.start < b.end-b.start){
+          return 1;
+        }
+      }
+    }
+    return 0;
+  }).reverse()
+  return arr;
 };
+
 
 /* ------------------------------------------------------------------------------------------------
 TESTS

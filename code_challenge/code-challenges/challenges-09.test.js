@@ -20,6 +20,11 @@ Becomes:
 
 function transformToLis(obj) {
   // Solution code here...
+  let newArr = [];
+  for (let i = 0; i < Object.keys(obj).length; i++) {
+    newArr.push(`<li>${Object.keys(obj)[i]}: ${Object.values(obj)[i]}</li>`);
+  }
+  return newArr;
 }
 
 /* ------------------------------------------------------------------------------------------------
@@ -31,6 +36,10 @@ Write a function named addValues that, given an array of numbers as input, uses 
 
 const addValues = (arr) => {
   // Solution code here...
+  return arr.reduce((rcc, item) => {
+    rcc += item;
+    return rcc;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -47,6 +56,10 @@ Write a function named addPurchases that, given an array of objects as input, us
 
 const addPurchases = (arr) => {
   // Solution code here...
+  return arr.reduce((rcc, item) => {
+    rcc += item.purchasePrice;
+    return rcc;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -59,6 +72,9 @@ Note: You may not use the array's built-in length property.
 
 const countNumberOfElements = (arr) => {
   // Solution code here...
+  return arr.reduce((rcc, item, i, myArr) => {
+    return myArr.length;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -122,6 +138,10 @@ let starWarsData = [
 
 const returnNames = (arr) => {
   // Solution code here...
+  return arr.reduce((rcc, item) => {
+    rcc.push(item.name);
+    return rcc;
+  }, []);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -134,6 +154,10 @@ Note: You must use reduce for this challenge. You may not use the built-in .reve
 
 const reversedString = (str) => {
   // Solution code here...
+  return str.split("").reduce((rcc, item) => {
+    rcc = item + rcc;
+    return rcc;
+  }, '');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -187,6 +211,10 @@ const characters = [
 
 const countNumberOfChildren = (arr) => {
   // Solution code here...
+  return arr.reduce((acc, item) => {
+    if (item.children) acc += item.children.length;
+    return acc;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -199,6 +227,14 @@ Hint: The accumulator should begin as { count: 0, sum: 0 }
 
 const calculateAverage = (arr) => {
   // Solution code here...
+  const avrage = arr.reduce(
+    (acc, number) => {
+      return { count: ++acc.count, sum: (acc.sum += number) };
+    },
+    { count: 0, sum: 0 }
+  );
+
+  return avrage.sum / avrage.count;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -220,6 +256,10 @@ const isPrime = (value) => {
 
 const countPrimeNumbers = (arr) => {
   // Solution code here...
+  return arr.reduce((acc, number) => {
+    if (isPrime(number)) acc++;
+    return acc;
+  }, 0);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -263,6 +303,11 @@ const snorlaxData = {
 
 const extractStat = (statName, arr) => {
   // Solution code here...
+  return arr.reduce((acc, item) => {
+    if (item.stat.name === statName) acc = item;
+    return acc;
+  }, null);
+  
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -277,6 +322,12 @@ Write a function named extractChildren that, given the array of characters from 
 
 const extractChildren = (arr) => {
   // Solution code here...
+  return arr
+    .filter((ele) => ele.name.includes("a") && ele.children)
+    .reduce((acc, item) => {
+      acc.push(...item.children);
+      return acc;
+    }, []);
 };
 
 /* ------------------------------------------------------------------------------------------------
